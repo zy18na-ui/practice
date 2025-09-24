@@ -1,0 +1,64 @@
+﻿{
+  "entities": {
+    "product": {
+      "primaryKey": "productId",
+      "fields": [
+        "productId",
+        "productName",
+        "description",
+        "supplierId",
+        "createdAt",
+        "updatedAt",
+        "imageUrl"
+      ]
+    },
+    "productcategory": {
+      "primaryKey": "productCategoryId",
+      "fields": [
+        "productCategoryId",
+        "productId",
+        "price",
+        "cost",
+        "createdAt"
+      ]
+    },
+    "supplier": {
+      "primaryKey": "supplierId",
+      "fields": [
+        "supplierId",
+        "supplierName",
+        "contactPerson",
+        "phoneNumber",
+        "supplierEmail",
+        "address",
+        "createdAt",
+        "updatedAt",
+        "supplierStatus"
+      ]
+    }
+  },
+  "relations": [
+    {
+      "from": "productcategory",
+      "to": "product",
+      "fromField": "productId",
+      "toField": "productId"
+    },
+    {
+      "from": "product",
+      "to": "supplier",
+      "fromField": "supplierId",
+      "toField": "supplierId"
+    }
+  ],
+  "synonyms": {
+    "price": [ "price", "sellingprice", "amount" ],
+    "cost": [ "cost", "suppliercost" ],
+    "supplier": [ "vendor", "provider" ],
+    "product": [ "item", "goods" ]
+  },
+  "guardrails": {
+    "maxLimit": 50,
+    "allowOps": [ "vector_search", "select", "join", "aggregate" ]
+  }
+}
